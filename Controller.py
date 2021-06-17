@@ -10,7 +10,7 @@ class Controller:
         self.vehicles = []
         self.chanceToRain = 0.3
 
-    def initialize(self):
+    def initializeList(self):
         request = requests.get("https://www.fantasynamegenerators.com/scripts/carNames.js?f")
         self.nameList = request.text[ request.text.index("[\"") + 1 : request.text.index("\"]") + 1 ].replace("\"", "").split(",")
         self.vehicles = []
@@ -20,22 +20,19 @@ class Controller:
             self.vehicles.append(Motor("Motor " + str(i + 1), 100))
             self.vehicles.append(Truck(str(random.randrange(0, 1000)), 100))
 
-    def simulation(self):
-        breakDownCounter = 0
-        hourCounter = 1
-        while(hourCounter < 6):        
-        
-            print(str(hourCounter) + ". óra")
-
-            if breakDownCounter == 3:
+    def setBreakDownToZero(self, breakDownCounter):
+        if breakDownCounter == 3:
                 breakDownCounter = 0
 
-            for i in self.vehicles:
+    def setBreakDownToTruck(self, breakDownCounter):
+        for i in self.vehicles:
                 if i.getType() == "Truck" and  i.isBreakDown() and breakDownCounter == 0 :
                     breakDownCounter = 1
                     i.setIsBreakDown(1)
                     break
 
+    def setSpeedsIfItHasBarrierOrNot(self, breakDownCounter):
+         
             if breakDownCounter > 0 and breakDownCounter < 3:
                 for i in self.vehicles:
                     if i.getType() == "Car" :
@@ -57,27 +54,48 @@ class Controller:
                         i.addHourSpeeds(i.getSpeed())
                         i.setIsBreakDown(0) 
 
-            if random.random() < self.chanceToRain :
-                for i in self.vehicles:
-                    if i.getType() == "Motor" :
-                        i.addHourSpeeds(i.getSpeedDuringRain())
-                print("Esik ")
-            else:
-                print("Nem esik")
-                for i in self.vehicles:
-                    if i.getType() == "Motor" :
-                        i.addHourSpeeds(i.getSpeed())
+    def setSpeedsIfItRainsOrNot(self):
+
+        if random.random() < self.chanceToRain :
+            for i in self.vehicles:
+                if i.getType() == "Motor" :
+                    i.addHourSpeeds(i.getSpeedDuringRain())
+            print("Esik ")
+        else:
+            print("Nem esik")
+            for i in self.vehicles:
+                if i.getType() == "Motor" :
+                    i.addHourSpeeds(i.getSpeed())
+
+    def simulation(self):
+        breakDownCounter = 0
+        hourCounter = 1
+
+        while(hourCounter < 6):        
+        
+            print(str(hourCounter) + ". óra")
+
+            self.setBreakDownToZero(breakDownCounter)
+
+            self.setBreakDownToTruck(breakDownCounter)
+            
+            self.setSpeedsIfItHasBarrierOrNot(breakDownCounter)
+           
+            self.setSpeedsIfItRainsOrNot()
         
             time.sleep(2)
             hourCounter += 1
 
+
+    def results(self):
+        
         shortedList = sorted(self.vehicles, key= lambda x: x.hourSpeeds, reverse = True)
 
         for i, value in enumerate(shortedList) :
             print(str(i + 1) + ". " + value.getName() + " " + str(value.getHourSpeeds()) + " km " + value.getType())
 
-
     def start(self):
 
-        self.initialize()        
+        self.initializeList()        
         self.simulation()
+        self.results()
