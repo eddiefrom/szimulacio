@@ -12,7 +12,7 @@ class Simulation:
         self.isThereBreakDown = 0
 
 
-    # Beállítja a jármű listát.
+    # Beallitja a jarmu listat.
     def initializeList(self):
         request = requests.get("https://www.fantasynamegenerators.com/scripts/carNames.js?f")
         self.nameList = request.text[ request.text.index("[\"") + 1 : request.text.index("\"]") + 1 ].replace("\"", "").split(",")
@@ -37,7 +37,7 @@ class Simulation:
 
 
 
-    # Beállítja a kocsi sebességét attól függően, hogy van e lerobbant kamion vagy sem.
+    # Beallitja a kocsi sebesseget attol fuggoen, hogy van e lerobbant kamion vagy sem.
     def setSpeedsToCar(self):
          
         for i in self.vehicles:
@@ -49,7 +49,7 @@ class Simulation:
                 
 
      
-    # Beállítja a kamion sebességét attól függően, hogy lerobbant vagy sem.
+    # Beallitja a kamion sebesseget attol fuggoen, hogy lerobbant vagy sem.
     def setSpeedsToTruck(self):
 
         for i in self.vehicles : 
@@ -68,7 +68,7 @@ class Simulation:
 
             
 
-    # Beállítja a motor sebességét attól függően, hogy esős az idő vagy sem.
+    # Beallitja a motor sebesseget attól fuggoen, hogy esos az ido vagy sem.
     def setSpeedsToMotor(self):
 
         if random.random() < self.chanceToRain :
@@ -82,7 +82,7 @@ class Simulation:
     
 
 
-    # A szimulációban az óránként vizsgált szempontokat valósítja meg.
+    # A szimulacioban az orankent vizsgalt szempontokat valositja meg.
     def simulation(self):
 
         hourCounter = 1
@@ -101,7 +101,7 @@ class Simulation:
 
 
 
-    # Az eddigi megtett út alapján rendezi és kiírja a járműveket.
+    # Az eddigi megtett ut alapjan rendezi és kiirja a jarmuveket.
     def sortAndPrintResults(self): 
         
         shortedList = sorted(self.vehicles, key= lambda x: x.hourSpeeds, reverse = True)
@@ -111,7 +111,7 @@ class Simulation:
 
 
 
-    # A szimuláció itt fut le.
+    # A szimulacio itt fut le.
     def start(self):
 
         self.initializeList()        

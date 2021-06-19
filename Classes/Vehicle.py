@@ -1,5 +1,5 @@
 
-# A jármű alap tulajdonságait megvalósító osztály
+# A jarmu alap tulajdonságait megvalosito osztaly
 class Vehicle:
 
     def __init__(self, name, speed):

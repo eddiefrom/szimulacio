@@ -1,13 +1,13 @@
 from Classes.Vehicle import Vehicle
 
-# Kocsit megvalósító osztály.
+# Kocsit megvalosito osztaly.
 class Car(Vehicle):
     pass
 
-    # A kocsi sebességét adja vissza, ha van akadály.
+    # A kocsi sebesseget adja vissza, ha van akadaly.
     def getSpeedDuringBarrier(self):
         return 75
 
-    # A kocsi tipusát adja vissza.
+    # A kocsi tipusat adja vissza.
     def getType(self):
         return "Car"
