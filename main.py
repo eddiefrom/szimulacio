@@ -1,9 +1,9 @@
-from Controller import Controller
+from Simulation import Simulation
 
 def main():
 
-    controller = Controller()
-    controller.start()
+    simulation = Simulation()
+    simulation.start()
 
 if __name__ == "__main__":
 	main()
