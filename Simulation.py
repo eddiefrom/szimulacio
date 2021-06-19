@@ -101,7 +101,7 @@ class Simulation:
 
 
 
-    # Az eddigi megtett ut alapjan rendezi és kiirja a jarmuveket.
+    # Az eddigi megtett ut alapjan rendezi es kiirja a jarmuveket.
     def sortAndPrintResults(self): 
         
         shortedList = sorted(self.vehicles, key= lambda x: x.hourSpeeds, reverse = True)
