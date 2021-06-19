@@ -68,7 +68,7 @@ class Simulation:
 
             
 
-    # Beallitja a motor sebesseget attól fuggoen, hogy esos az ido vagy sem.
+    # Beallitja a motor sebesseget attol fuggoen, hogy esos az ido vagy sem.
     def setSpeedsToMotor(self):
 
         if random.random() < self.chanceToRain :
