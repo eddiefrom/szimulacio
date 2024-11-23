@@ -1,13 +1,10 @@
-# Verseny szimuláció
+# Competition simulation
 
-### Készítette: Jakab Csaba
+## Description
+This program simulates and analyzes 3 type of vehicles.
 
-## Leírás
-A program 3 tipusú, tipusonként 10 darab jármű versenyzését szimulálja és vizsgálja.
-
-## Indítás
-### A futtatáshoz python 3.x verzió szükséges
+## Start
+### python 3.x version needed
 ```
-$ cd ..\szimulacio
 $ python main.py
 ```
